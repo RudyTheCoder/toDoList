@@ -1,0 +1,24 @@
+#ignore word files
+*.docx
+
+#ignore Text files
+*.txt
+
+#ignore PDF Files
+*.pdf
+
+#ignore Png files
+*.png
+
+#ignore Shell Scripts
+*.sh
+
+#ignore log files
+*.log
+
+#ignore DS Store
+.DS_Store
+
+# Ignore node_modules directory
+node_modules/
+
