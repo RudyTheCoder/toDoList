@@ -1,8 +1,12 @@
 // Import necessary modules
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import bodyParser from "body-parser"; // Import bodyParser using ES6 import syntax
 import mongoose from "mongoose";
 import _ from "lodash";
+
 
 // Create an Express application
 const app = express();
@@ -21,10 +25,18 @@ app.use("/public/css", (req, res, next) => {
 });
 
 // Connect to the MongoDB database
-mongoose.connect("mongodb://localhost:27017/todolistDB", {
+// mongoose.connect("mongodb://localhost:27017/todolistDB", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// });
+
+
+
+
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-});
+  });
 
 // Define a schema for to-do items
 const itemsSchema = {
@@ -67,7 +79,6 @@ app.get("/", async function (req, res) {
         if (foundItems.length === 0) {
             // Insert default items if the database is empty
             await Item.insertMany(defaultItems);
-            console.log("Successfully saved default items to DB.");
         }
 
         // Render or redirect to a view here (e.g., "list")
@@ -143,7 +154,6 @@ app.post("/delete", async function (req, res) {
         try {
             // Delete a to-do item by its ID
             await Item.findByIdAndRemove(checkedItemId);
-            console.log("Successfully deleted checked item.");
             res.redirect("/");
         } catch (err) {
             console.log(err);
@@ -172,5 +182,4 @@ if (port == null || port == "") {
 
 // Start the server
 app.listen(port, function () {
-    console.log("Server has started on port 3000 successfully");
 });
