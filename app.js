@@ -24,13 +24,6 @@ app.use("/public/css", (req, res, next) => {
     next();
 });
 
-// Connect to the MongoDB database
-// mongoose.connect("mongodb://localhost:27017/todolistDB", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
-
-
 
 
 mongoose.connect(process.env.MONGODB_URI, {
