@@ -2,6 +2,11 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+console.log("Running in Railway?");
+console.log("MONGODB_URI from env:", process.env.MONGODB_URI);
+console.log("PORT:", process.env.PORT);
+
+
 import express from "express";
 import bodyParser from "body-parser"; // Import bodyParser using ES6 import syntax
 import mongoose from "mongoose";
@@ -23,7 +28,6 @@ app.use("/public/css", (req, res, next) => {
     res.setHeader("Content-Type", "text/css");
     next();
 });
-
 
 
 mongoose.connect(process.env.MONGODB_URI, {
@@ -175,4 +179,5 @@ if (port == null || port == "") {
 
 // Start the server
 app.listen(port, function () {
+    console.log("Server is connected")
 });
