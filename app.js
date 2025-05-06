@@ -2,10 +2,6 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-console.log("Running in Railway?");
-console.log("MONGODB_URI from env:", process.env.MONGODB_URI);
-console.log("PORT:", process.env.PORT);
-
 
 import express from "express";
 import bodyParser from "body-parser"; // Import bodyParser using ES6 import syntax
